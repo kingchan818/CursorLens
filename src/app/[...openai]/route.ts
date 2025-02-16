@@ -12,7 +12,7 @@ import { type NextRequest, NextResponse } from "next/server";
 import OpenAI from "openai";
 
 const openaiClient = new OpenAI({
-  apiKey: env.OPENAI_API_KEY,
+  apiKey: process.env.OPENAI_API_KEY || "",
 });
 
 // Allow streaming responses up to 30 seconds

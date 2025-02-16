@@ -2,7 +2,7 @@ FROM node:18-alpine
 
 WORKDIR /app
 
-RUN apk add --no-cache libc6-compat
+RUN apk add --no-cache libc6-compat openssl
 RUN apk update
 
 # Install pnpm
@@ -21,7 +21,7 @@ COPY . .
 RUN pnpm prisma generate
 
 # Build the application
-RUN pnpm run build
+RUN SKIP_ENV_VALIDATION=1 pnpm run build
 
 # Expose the port the app runs on
 EXPOSE 3000
